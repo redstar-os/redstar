@@ -8,6 +8,7 @@ ARCH_DIR := x86
 endif
 ifeq ($(ARCH), riscv64)
 ARCH_DIR := riscv
+QEMUOPTS += -M virt
 endif
 ifeq ($(ARCH), aarch64)
 ARCH_DIR := arm64
@@ -19,7 +20,7 @@ LD := ld.lld
 OBJCOPY := objcopy
 OBJDUMP := objdump
 CFLAGS := -target $(ARCH) -c
-LDFLAGS := -T arch/kernel.ld
+LDFLAGS := -T arch/$(ARCH_DIR)/kernel.ld
 
 kernel: arch/$(ARCH_DIR)/boot.S
 	mkdir -p build
