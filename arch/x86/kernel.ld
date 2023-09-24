@@ -1,8 +1,9 @@
 ENTRY(_start)
 
 SECTIONS{
-    . = 0x80200000;
+    . = 0x100000;
     .text : {
+        *(.multiboot)
         *(.text)
     }
 }
