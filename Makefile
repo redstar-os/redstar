@@ -1,9 +1,9 @@
-ARCH ?= x86_64	# x86_64, aarch64, riscv64
+ARCH ?= i386	# i386, aarch64, riscv64
 
 QEMU := qemu-system-$(ARCH)
 QEMUOPTS :=  -d in_asm -display none
 
-ifeq ($(ARCH), x86_64)
+ifeq ($(ARCH), i386)
 ARCH_DIR := x86
 endif
 ifeq ($(ARCH), riscv64)
@@ -19,7 +19,7 @@ CC := clang
 LD := ld.lld
 OBJCOPY := objcopy
 OBJDUMP := objdump
-CFLAGS := -target $(ARCH) -c
+CFLAGS := -target $(ARCH)-unknown-none-elf -c
 LDFLAGS := -T arch/$(ARCH_DIR)/kernel.ld
 
 kernel: arch/$(ARCH_DIR)/boot.S
